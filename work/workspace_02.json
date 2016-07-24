@@ -1,0 +1,19 @@
+{
+  "layout": "tabbed",
+  "percent": 1,
+  "type": "con",
+  "nodes": [
+    {
+      "border": "none",
+      "name": "GITKRAKEN",
+      "percent": 1,
+      "type": "con",
+      "swallows": [
+        {
+          "class": "^GitKraken$",
+          "instance": "^gitkraken$"
+        }
+      ]
+    }
+  ]
+}

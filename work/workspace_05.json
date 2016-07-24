@@ -1,0 +1,32 @@
+{
+  "layout": "tabbed",
+  "percent": 1,
+  "type": "con",
+  "nodes": [
+    {
+      "border": "none",
+      "name": "CHROMIUM",
+      "percent": 0.5,
+      "type": "con",
+      "swallows": [
+        {
+          "class": "^chromium-browser$",
+          "instance": "^chromium-browser.*$",
+          "window_role": "^browser$"
+        }
+      ]
+    },
+    {
+      "border": "none",
+      "name": "irssi",
+      "percent": 0.5,
+      "type": "CHROME",
+      "swallows": [
+        {
+          "class": "^google-chrome$",
+          "instance": "^google-chrome$"
+        }
+      ]
+    }
+  ]
+}

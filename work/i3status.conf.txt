@@ -1,0 +1,29 @@
+general {
+        colors = false
+        interval = 1
+}
+
+order += "disk /"
+order += "cpu_usage"
+order += "volume master"
+order += "tztime local"
+
+disk "/" {
+	format = "HDD: %free"
+}
+
+cpu_usage {
+	format = "CPU: %usage "
+}
+
+volume master {
+	format = "VOL: %volume"
+	format_muted = "VOL: MUTED (%volume)"
+	device = "default"
+	mixer = "Master"
+	mixer_idx = 0
+}
+
+tztime local {
+	format = "TIME: %D %H:%M:%S "
+}

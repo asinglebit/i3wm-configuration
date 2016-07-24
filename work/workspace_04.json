@@ -1,0 +1,19 @@
+{
+  "layout": "tabbed",
+  "percent": 1,
+  "type": "con",
+  "nodes": [
+    {
+      "border": "none",
+      "name": "ATOM",
+      "percent": 1,
+      "type": "con",
+      "swallows": [
+        {
+          "class": "^Atom$",
+          "instance": "^atom$"
+        }
+      ]
+    }
+  ]
+}

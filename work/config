@@ -1,0 +1,181 @@
+# Double monitor setup
+
+# Global stuff
+set $mod Mod4
+font pango:Ubuntu 9
+floating_modifier $mod
+focus_follows_mouse yes
+
+# Start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Change system volume
+bindsym $mod+F1 exec amixer -q set Master 2dB- unmute
+bindsym $mod+F2 exec amixer -q set Master 2dB+ unmute
+bindsym $mod+F3 exec amixer -D pulse set Master toggle
+
+# Start dmenu
+
+bindsym $mod+d exec "dmenu_run -nb '#000000' -nf '#FFFFFF' -sb '#848484' -sf '#000000' -fn 'Ubuntu-9'"
+
+# Change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split in horizontal orientation
+bindsym $mod+h split h
+
+# Split in vertical orientation
+bindsym $mod+v split v
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Focus the parent container
+bindsym $mod+a focus parent
+
+# Focus the child container
+#bindsym $mod+d focus child
+
+# Name the workspaces
+set $tag1 "01: TERM"
+set $tag2 "02: GITK"
+set $tag3 "03: IDEA"
+set $tag4 "04: ATOM"
+set $tag5 "05: BROW"
+set $tag6 "06: SKYP"
+set $tag7 "07: TEMP"
+set $tag8 "08: TEMP"
+set $tag9 "09: TEMP"
+set $tag10 "10: TEMP"
+
+# switch to workspace
+bindsym $mod+1 workspace $tag1
+bindsym $mod+2 workspace $tag2
+bindsym $mod+3 workspace $tag3
+bindsym $mod+4 workspace $tag4
+bindsym $mod+5 workspace $tag5
+bindsym $mod+6 workspace $tag6
+bindsym $mod+7 workspace $tag7
+bindsym $mod+8 workspace $tag8
+bindsym $mod+9 workspace $tag9
+bindsym $mod+0 workspace $tag10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $tag1
+bindsym $mod+Shift+2 move container to workspace $tag2
+bindsym $mod+Shift+3 move container to workspace $tag3
+bindsym $mod+Shift+4 move container to workspace $tag4
+bindsym $mod+Shift+5 move container to workspace $tag5
+bindsym $mod+Shift+6 move container to workspace $tag6
+bindsym $mod+Shift+7 move container to workspace $tag7
+bindsym $mod+Shift+8 move container to workspace $tag8
+bindsym $mod+Shift+9 move container to workspace $tag9
+bindsym $mod+Shift+0 move container to workspace $tag10
+
+# Move workspace between monitors
+bindsym $mod+Ctrl+Shift+o exec i3-msg move workspace to output left
+bindsym $mod+Ctrl+Shift+p exec i3-msg move workspace to output right
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# Exit i3 (logs you out of your X session)
+bindsym $mod+Ctrl+Shift+e exec "i3-msg exit"
+
+# Lock i3
+bindsym $mod+Shift+l exec "i3lock"
+
+# Resize window
+bindsym $mod+Ctrl+Shift+Left resize shrink width 1 px or 1 ppt
+bindsym $mod+Ctrl+Shift+Down resize grow height 1 px or 1 ppt
+
+# Change keyboard layout
+bindsym ctrl+1 exec setxkbmap us
+bindsym ctrl+2 exec setxkbmap ru
+
+# Start i3bar to display a workspace bar
+bar {
+	colors {
+
+    # Whole color settings
+	  background #000000
+	  statusline #ffffff
+	  separator #666666
+
+		# Type border background font
+		focused_workspace  #666666 #666666 #ffffff
+		active_workspace   #000000 #000000 #ffffff
+		inactive_workspace #000000 #222222 #666666
+		urgent_workspace   #aa0000 #990000 #ffffff
+	}
+
+	# i3bar position
+	position top
+
+	# Using custom i3status.conf
+	status_command i3status -c ~/.config/i3/i3status.conf.txt
+}
+
+client.focused          #666666 #666666 #ffffff #666666
+client.focused_inactive #000000 #000000 #ffffff #000000
+client.unfocused        #000000 #222222 #666666 #000000
+client.urgent           #aa0000 #990000 #ffffff #900000
+
+# Multiple monitors setup
+exec_always --no-startup-id xrandr --output HDMI1 --mode 1920x1080
+exec_always --no-startup-id xrandr --output VGA1 --mode 1920x1080 --right-of HDMI1
+
+# Startup layout
+exec --no-startup-id "i3-msg 'workspace 01: TERM;
+append_layout ~/.config/i3/workspace_01.json;
+move workspace to output HDMI1;
+workspace 02: GITK;
+append_layout ~/.config/i3/workspace_02.json;
+move workspace to output HDMI1;
+workspace 03: IDEA;
+append_layout ~/.config/i3/workspace_03.json;
+move workspace to output HDMI1;
+workspace 04: ATOM;
+append_layout ~/.config/i3/workspace_04.json;
+move workspace to output HDMI1;
+workspace 05: BROW;
+append_layout ~/.config/i3/workspace_05.json;
+move workspace to output VGA1;
+workspace 06: SKYP;
+append_layout ~/.config/i3/workspace_06.json;
+move workspace to output VGA1'"
+
+# Startup software
+exec --no-startup-id "terminator -l Work"
+exec --no-startup-id "gitkraken"
+exec --no-startup-id "idea"
+exec --no-startup-id "atom"
+exec --no-startup-id "chromium-browser --disable-web-security --user-data-dir=~"
+exec --no-startup-id "google-chrome-stable"
+exec --no-startup-id "skypeforlinux"

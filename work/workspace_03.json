@@ -1,0 +1,19 @@
+{
+  "layout": "tabbed",
+  "percent": 1,
+  "type": "con",
+  "nodes": [
+    {
+      "border": "none",
+      "name": "IDEA",
+      "percent": 1,
+      "type": "con",
+      "swallows": [
+        {
+          "class": "^jetbrains-idea$",
+          "instance": "^sun-awt-X11-XFramePeer$"
+        }
+      ]
+    }
+  ]
+}

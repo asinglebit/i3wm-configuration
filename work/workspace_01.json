@@ -1,0 +1,19 @@
+{
+  "layout": "tabbed",
+  "percent": 1,
+  "type": "con",
+  "nodes": [
+    {
+      "border": "none",
+      "name": "TERMINATOR",
+      "percent": 1,
+      "type": "con",
+      "swallows": [
+        {
+          "class": "^Terminator$",
+          "instance": "^terminator$"
+        }
+      ]
+    }
+  ]
+}
